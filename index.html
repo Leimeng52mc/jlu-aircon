@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>吉林大学</title>
+  <script>
+    // 你的目标URL列表
+    const urls = [
+      "https://gree.com/cmsProduct/list/41",
+      "https://www.midea.cn/s/search/search.html?category_id=10001",
+      "https://www.mi.com/shop/search?keyword=%E7%A9%BA%E8%B0%83",
+      "https://www.aux-home.com/",
+      "http://www.china-chigo.com/",
+      "https://www.haier.com/air_conditioners/?spm=cn.home_pc.header_1_20241118.2",
+      "https://cn.changhong.com/cpzx/jy_aircondition/search.html"
+    ];
+    // 随机选择一个URL并跳转
+    window.onload = function() {
+      const randomUrl = urls[Math.floor(Math.random() * urls.length)];
+      window.location.href = randomUrl;
+    };
+  </script>
+</head>
+<body>
+  <noscript>
+    请开启JavaScript以完成跳转。
+  </noscript>
+</body>
+</html>
