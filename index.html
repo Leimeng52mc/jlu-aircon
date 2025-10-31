@@ -5,8 +5,74 @@
   <title>吉林大学</title>
   <!-- 网站icon -->
   <link rel="icon" href="/favicon.ico" type="image/x-icon">
+  <style>
+    /* 页面背景与居中布局 */
+    html, body {
+      height: 100%;
+      margin: 0;
+    }
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      background-image: url("/images/5c8a2bd9c16a4.jpg");
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      color: #fff;
+      text-align: center;
+      font-family: sans-serif;
+    }
+    .count-container {
+      /* 取消背景、圆角与阴影，使容器无边框视觉 */
+      background: transparent;
+      padding: 24px 32px;
+      border-radius: 0;
+      box-shadow: none;
+    }
+
+    /* 提示文字：隶书、红色文字、黄色描边（兼容回退） */
+    .count-container h2 {
+      font-family: "LiSu", "隶书", "STLiti", "KaiTi", serif;
+      color: #ff0000;
+      -webkit-text-stroke: 1px #ffeb3b; /* 黄描边，Chrome/Safari */
+      text-shadow:
+        -1px -1px 0 #ffeb3b,
+         1px -1px 0 #ffeb3b,
+        -1px  1px 0 #ffeb3b,
+         1px  1px 0 #ffeb3b; /* 兼容性回退描边 */
+      font-size: 2.5rem; /* 汉字基准大小 */
+      margin: 0;
+    }
+
+    /* 倒计时数字比汉字大一号 */
+    #countdown {
+      display: inline-block;
+      font-size: 2.9rem; /* 比 h2 的 2.5rem 大一号 */
+      line-height: 1;
+      vertical-align: baseline;
+    }
+
+    noscript .count-container {
+      background: transparent;
+      box-shadow: none;
+    }
+
+    /* 在 noscript 中恢复默认样式，避免继承 .count-container h2 的自定义样式 */
+    noscript .count-container h2,
+    noscript .count-container h2 * {
+      all: revert;
+      -webkit-text-stroke: 0;
+      text-shadow: none;
+    }
+
+    img.noscript-img { max-width: 300px; display: block; margin: 12px auto 0; }
+  </style>
+
   <script>
-    // 随机跳转代码
+    // 随机跳转 + 4秒倒计时逻辑
     const urls = [
       "https://gree.com/cmsProduct/list/41",
       "https://www.midea.cn/s/search/search.html?category_id=10001",
@@ -16,17 +82,35 @@
       "https://www.haier.com/air_conditioners/?spm=cn.home_pc.header_1_20241118.2",
       "https://cn.changhong.com/cpzx/jy_aircondition/search.html"
     ];
-    window.onload = function() {
+    window.addEventListener('load', function() {
       const randomUrl = urls[Math.floor(Math.random() * urls.length)];
-      window.location.href = randomUrl;
-    };
+      let seconds = 4;
+      // 首次显示
+      const setCount = () => {
+        const el = document.getElementById('countdown');
+        if (el) el.textContent = String(seconds);
+      };
+      setCount();
+      const timer = setInterval(function() {
+        seconds--;
+        setCount();
+        if (seconds <= 0) {
+          clearInterval(timer);
+          window.location.href = randomUrl;
+        }
+      }, 1000);
+    });
   </script>
 </head>
 <body>
+  <div class="count-container">
+    <h2>页面将在 <span id="countdown">4</span> 秒后跳转</h2>
+  </div>
+
   <noscript>
-    <div style="text-align:center;margin-top:50px;">
+    <div class="count-container">
       <h2>请开启JavaScript以完成跳转</h2>
-      <img src="/images/E82182741DE81D3334FDAE942BC39BF7.jpg" alt="吉林大学 你把大家 都害死了" style="max-width:300px;">
+      <img class="noscript-img" src="/images/E82182741DE81D3334FDAE942BC39BF7.jpg" alt="吉林大学 你把大家 都害死了">
       <p>本页面需依赖JavaScript实现自动跳转。</p>
     </div>
   </noscript>
