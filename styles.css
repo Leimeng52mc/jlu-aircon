@@ -1,0 +1,85 @@
+/* 页面背景与居中布局 */
+html,
+body {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  display: flex;
+  flex-direction: column; /* 修改：竖直排列，卡片上方，倒计时下方 */
+  align-items: center;
+  justify-content: center;
+  gap: 18px; /* 卡片与倒计时之间的垂直间距 */
+  min-height: 100vh;
+  background-image: url("/images/5c8a2bd9c16a4.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  color: #fff;
+  text-align: center;
+  font-family: sans-serif;
+}
+
+.count-container {
+  /* 取消背景、圆角与阴影，使容器无边框视觉 */
+  background: transparent;
+  padding: 16px 24px; /* 略微收紧，视觉更贴近卡片 */
+  border-radius: 0;
+  box-shadow: none;
+  margin-top: 0; /* 确保与上方卡片的间距由 body gap 控制 */
+}
+
+/* 提示文字：隶书、红色文字、黄色描边（兼容回退） */
+.count-container h2 {
+  font-family: "LiSu", "隶书", "STLiti", "KaiTi", serif;
+  color: #ff0000;
+  -webkit-text-stroke: 1px #ffeb3b;
+  /* 黄描边，Chrome/Safari */
+  text-shadow:
+    -1px -1px 0 #ffeb3b,
+    1px -1px 0 #ffeb3b,
+    -1px 1px 0 #ffeb3b,
+    1px 1px 0 #ffeb3b;
+  /* 兼容性回退描边 */
+  font-size: 5rem;
+  /* 汉字基准大小 */
+  margin: 0;
+}
+
+/* 倒计时数字比汉字大一号 */
+#countdown {
+  display: inline-block;
+  font-size: 5.8rem;
+  /* 比 h2 的 5.8rem 大一号 */
+  line-height: 1;
+  vertical-align: baseline;
+}
+
+noscript .count-container {
+  background: transparent;
+  box-shadow: none;
+}
+
+/* 在 noscript 中恢复默认样式，避免继承 .count-container h2 的自定义样式 */
+noscript .count-container h2,
+noscript .count-container h2 * {
+  all: revert;
+  -webkit-text-stroke: 0;
+  text-shadow: none;
+}
+
+img.noscript-img {
+  max-width: 300px;
+  display: block;
+  margin: 12px auto 0;
+}
+
+/* 全局禁止选择 */
+html, body, * {
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
