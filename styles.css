@@ -3,14 +3,6 @@ html,
 body {
   height: 100%;
   margin: 0;
-}
-
-body {
-  display: flex;
-  flex-direction: column; /* 修改：竖直排列，卡片上方，倒计时下方 */
-  align-items: center;
-  justify-content: center;
-  gap: 18px; /* 卡片与倒计时之间的垂直间距 */
   min-height: 100vh;
   background-image: url("/images/5c8a2bd9c16a4.jpg");
   background-size: cover;
@@ -22,13 +14,21 @@ body {
   font-family: sans-serif;
 }
 
+/* .count-container 依然固定底部居中，无需依赖 body 布局 */
 .count-container {
-  /* 取消背景、圆角与阴影，使容器无边框视觉 */
-  background: transparent;
-  padding: 16px 24px; /* 略微收紧，视觉更贴近卡片 */
+  position: fixed;
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%);
+  z-index: 100;
+  padding: 16px 24px;
   border-radius: 0;
   box-shadow: none;
-  margin-top: 0; /* 确保与上方卡片的间距由 body gap 控制 */
+  margin-top: 0;
+  background: transparent;
+  min-width: 480px;
+  max-width: 90vw;
+  text-align: center;
 }
 
 /* 提示文字：隶书、红色文字、黄色描边（兼容回退） */
@@ -74,6 +74,28 @@ img.noscript-img {
   max-width: 300px;
   display: block;
   margin: 12px auto 0;
+}
+
+/* 网易云音乐播放器固定在左下角 */
+.music-player-fixed {
+  position: fixed;
+  left: 0px;
+  bottom: 20px;
+  z-index: 101;
+}
+
+/* 公众号卡片区域竖直居中 */
+.wechat-articles {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* 保证内容居中 */
+  z-index: 10;
 }
 
 /* 全局禁止选择 */
