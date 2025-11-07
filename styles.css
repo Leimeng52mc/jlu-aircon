@@ -14,7 +14,7 @@ body {
   min-height: 100vh;
   background-image: url("/images/5c8a2bd9c16a4.jpg");
   background-size: cover;
-  background-position: center;
+  background-position: top;
   background-repeat: no-repeat;
   background-attachment: fixed;
   color: #fff;
